@@ -1,0 +1,49 @@
+{
+  "name": "maxbox",
+  "productName": "maxbox",
+  "version": "1.0.0",
+  "description": "maxbox 装箱容量计算与三维摆放方案工具",
+  "main": ".vite/build/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "make:msi": "node scripts/make-msi.js -- --platform=win32",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "test:unit": "node --test \"test/unit/*.test.mjs\"",
+    "test:static": "node --test \"test/static/*.test.mjs\""
+  },
+  "keywords": [],
+  "author": {
+    "name": "pashpon",
+    "email": "pashpon@qq.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.2",
+    "@electron-forge/maker-deb": "^7.11.2",
+    "@electron-forge/maker-rpm": "^7.11.2",
+    "@electron-forge/maker-wix": "^7.11.2",
+    "@electron-forge/maker-zip": "^7.11.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.11.2",
+    "@electron-forge/plugin-fuses": "^7.11.2",
+    "@electron-forge/plugin-vite": "^7.11.2",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^44.1.1",
+    "jsdom": "^30.0.1",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "canvg": "^4.0.3",
+    "electron-squirrel-startup": "^1.0.1",
+    "jspdf": "^4.2.1"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true,
+    "electron-winstaller@5.4.4": true,
+    "electron@44.1.1": true
+  }
+}

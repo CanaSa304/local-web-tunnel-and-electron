@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>maxbox</title>
+  </head>
+  <body>
+    <!-- 顶部标题栏拖拽区（白色） -->
+    <div class="titlebar-drag"></div>
+    <div class="app-container">
+      <!-- 左侧侧边栏 -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <span>maxbox</span>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#mainPage" class="nav-item" data-route="mainPage">
+            <span class="nav-label">首页</span>
+          </a>
+          <a href="#myPage" class="nav-item" data-route="myPage">
+            <span class="nav-label">我的</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content-area">
+        <!-- 首页：导入文件夹 / 文件 -->
+        <section id="mainPage" class="page">
+          <div class="page-content import-page">
+            <h2 class="panel-title">导入文件夹 / 文件</h2>
+            <p class="panel-desc">
+              选择一个本地文件夹或单个文件（不限格式），导入后其内容会统一保存到
+              <code id="import-root" class="import-root">--</code>
+              。也可以把文件夹或文件直接拖拽到下方区域。
+            </p>
+
+            <div id="import-dropzone" class="import-dropzone">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 15v3a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-3" />
+                <path d="M12 15V3" />
+                <path d="M7.5 7.5 12 3l4.5 4.5" />
+              </svg>
+              <p class="dropzone-title">把文件夹或文件拖到这里</p>
+              <p class="dropzone-sub">或者</p>
+              <div class="dropzone-actions">
+                <button id="btn-import-folder" type="button" class="btn-primary">选择文件夹导入</button>
+                <button id="btn-import-file" type="button" class="btn-ghost">选择文件导入</button>
+              </div>
+            </div>
+
+            <div id="import-message" class="import-message" hidden></div>
+
+            <div class="import-list-head">
+              <span>已导入内容</span>
+              <span id="import-count" class="import-count">0 个</span>
+              <button
+                type="button"
+                id="btn-import-refresh"
+                class="title-icon-btn"
+                title="刷新已导入列表"
+                aria-label="刷新已导入列表"
+              >
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.5 12a8.5 8.5 0 1 1-2.49-6.01"/>
+                  <path d="M21 3v5.5h-5.5"/>
+                </svg>
+              </button>
+            </div>
+            <div id="import-list" class="import-list">
+              <div class="import-empty">暂无导入内容</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 我的页 -->
+        <section id="myPage" class="page">
+          <div class="mypage-header">
+            <h1>👤 我的</h1>
+          </div>
+          <div class="page-content mypage-content">
+            <!-- 数据存储位置 -->
+            <div id="storage-panel" class="storage-panel">
+              <h2 class="storage-title">💾 数据存储位置</h2>
+
+              <div class="storage-card">
+                <div class="storage-row">
+                  <span class="storage-label">导入内容目录</span>
+                  <div class="storage-value-row">
+                    <code id="storage-userdata" class="storage-path">--</code>
+                    <button type="button" id="btn-open-userdata" class="btn-ghost storage-btn">打开</button>
+                  </div>
+                </div>
+
+                <p class="storage-tip">
+                  首页导入的文件夹和文件都保存在上述目录中，卸载应用时可能被一并清除，建议定期备份。
+                </p>
+
+                <button type="button" id="btn-copy-userdata" class="btn-primary storage-copy">
+                  复制目录路径
+                </button>
+              </div>
+            </div>
+
+            <!-- HTML 公网转发 -->
+            <div id="publish-panel" class="storage-panel">
+              <h2 class="storage-title">🌐 HTML 公网转发</h2>
+
+              <div class="storage-card">
+                <div class="storage-row">
+                  <span class="storage-label">发布内容</span>
+                  <div class="storage-value-row">
+                    <select id="publish-entry" class="publish-select" aria-label="选择要发布的 HTML">
+                      <option value="">（全部内容 · 索引页）</option>
+                    </select>
+                    <button
+                      type="button"
+                      id="btn-publish-refresh"
+                      class="btn-ghost storage-btn"
+                      title="刷新可发布的 HTML 列表"
+                    >
+                      刷新
+                    </button>
+                  </div>
+                </div>
+
+                <div class="storage-row">
+                  <span class="storage-label">服务端口</span>
+                  <code id="publish-port" class="storage-path">5000</code>
+                </div>
+
+                <div class="publish-actions">
+                  <button type="button" id="btn-publish-start" class="btn-primary">开启转发</button>
+                  <button type="button" id="btn-publish-stop" class="btn-ghost" disabled>停止转发</button>
+                  <button type="button" id="btn-publish-open" class="btn-ghost" disabled>在浏览器打开</button>
+                </div>
+
+                <div id="publish-state" class="publish-state">
+                  <span id="publish-badge" class="publish-badge is-off">未开启</span>
+                  <span id="publish-text" class="publish-text">未开启转发</span>
+                </div>
+
+                <div id="publish-message" class="publish-message" hidden></div>
+
+                <ul id="publish-urls" class="publish-urls" hidden></ul>
+
+                <p class="storage-tip">
+                  开启后会把选中的 HTML 通过 <code>http://本机IP:5000</code> 发布出去，并自动在
+                  Windows 防火墙放行 TCP 5000 端口（首次可能需要管理员授权）；停止转发后会自动删除该放行规则。
+                  若要从外网访问，还需在路由器 / 网关上把 5000 端口转发到本机。
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/renderer.js"></script>
+  </body>
+</html>

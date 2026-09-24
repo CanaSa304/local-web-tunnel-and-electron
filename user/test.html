@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxBox - GitHub Project Showcase</title>
+    <!-- 引入 Google Fonts 衬线字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #007AFF;
+            --text-main: #1D1D1F;
+            --text-secondary: #86868B;
+            --bg-color: #FFFFFF;
+        }
+
+        * {
+            -webkit-user-select: none;  /* Chrome / Safari / Edge */
+            -moz-user-select: none;     /* Firefox */
+            -ms-user-select: none;      /* IE / Edge 旧版 */
+            user-select: none;          /* 标准语法 */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            /* 全局使用 Lora 字体，营造优雅基调 */
+            font-family: 'Lora', "Times New Roman", Times, serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 简单的淡入动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero 区域 - 采用非对称布局，增加艺术感 */
+        .hero {
+            text-align: left; /* 改为左对齐 */
+            padding: 120px 5% 100px; /* 增加上下内边距，左右使用百分比适应不同屏幕 */
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero h1 {
+            /* 标题使用 Playfair Display，极大增加字号，紧凑字间距 */
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem); /* 响应式超大字号 */
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 40px;
+            max-width: 900px;
+            background: linear-gradient(135deg, var(--text-main) 0%, #4a4a4a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px; /* 收窄宽度，提升阅读舒适度 */
+            line-height: 1.8; /* 增加行高 */
+            font-weight: 400;
+        }
+
+        /* 页脚 - 增加精致感 */
+        footer {
+            padding: 60px 5%;
+            text-align: left; /* 与主视觉对齐 */
+            border-top: 1px solid #E5E5EA;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em; /* 增加字间距 */
+            text-transform: uppercase; /* 全大写 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* 移动端适配微调 */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+                text-align: center; /* 移动端恢复居中 */
+            }
+            .hero h1 {
+                font-size: 3rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 主视觉区域 -->
+    <section class="hero">
+        <h1>Allow local web pages to reach the public network with one click</h1>
+        <p>MaxBox is a lightweight web server software built on Electron and Python. No complex configuration is required, allowing you to instantly publish your local web projects to the public network. Project author's contact: pashpon@qq.com</p>
+    </section>
+
+</body>
+</html>
